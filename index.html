@@ -1,0 +1,30 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Image</title>
+    <script>
+        // แทนที่ด้วยลิงก์ของภาพจาก Google Drive
+        const imageURL = 'https://drive.google.com/file/d/18Sj4URky0JqFReGapyBudA3XpdF38VwK/view?usp=sharing';
+
+        // ฟังก์ชันสำหรับดาวน์โหลดภาพ
+        function downloadImage(url) {
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '4 circuit.jpg'; // ชื่อไฟล์ที่ต้องการ
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // ดาวน์โหลดภาพเมื่อเว็บเพจโหลดเสร็จ
+        window.onload = function() {
+            downloadImage(imageURL);
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
