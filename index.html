@@ -11,12 +11,23 @@
 
         // ฟังก์ชันสำหรับดาวน์โหลดภาพ
         function downloadImage(url) {
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = '4 circuit.jpg'; // ชื่อไฟล์ที่ต้องการ
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            if (isIOS) {
+                // แสดงข้อความหรือปุ่มเพื่อแนะนำให้ผู้ใช้คลิกเพื่อดาวน์โหลด
+                const downloadButton = document.createElement('button');
+                downloadButton.innerText = "Click to Download";
+                downloadButton.onclick = function() {
+                    window.open(url, '_blank');
+                };
+                document.body.appendChild(downloadButton);
+            } else {
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'image.jpg';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
         }
 
         // ดาวน์โหลดภาพเมื่อเว็บเพจโหลดเสร็จ
